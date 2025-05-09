@@ -22,6 +22,19 @@
                         <a class="nav-link px-3 py-2 rounded-pill fw-semibold" href="{{ url('/contact') }}" style="color:#1e293b; transition:background 0.2s;">Contact</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav ms-auto">
+                    @if(Auth::check() && Auth::user()->role === 'customer')
+                        <li class="nav-item d-flex align-items-center">
+                            <span class="me-2 fw-semibold" style="color:#1e293b;">
+                                {{ Auth::user()->name }}
+                            </span>
+                            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm ms-2">Logout</button>
+                            </form>
+                        </li>
+                    @endif
+                </ul>
             </div>
         </div>
     </nav>

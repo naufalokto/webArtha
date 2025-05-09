@@ -65,6 +65,7 @@
         align-items: center;
         justify-content: center;
         font-size: 1.5rem;
+        cursor: pointer;
     }
     .manager-topbar .logout-form {
         margin-left: 24px;
@@ -160,11 +161,34 @@
         <span class="ms-4 text-muted" style="font-size:1rem;">Analytics</span>
         <span class="ms-4 text-muted" style="font-size:1rem;">Transactions</span>
     </div>
-    <div class="d-flex align-items-center">
-        <div class="profile-icon me-2">
-            <i class="bi bi-person-circle"></i>
+    <div class="d-flex align-items-center" style="position:relative;">
+        <!-- Profile Dropdown Start -->
+        <div class="dropdown">
+            <button class="profile-icon me-2 btn btn-link dropdown-toggle d-flex align-items-center" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="border:none;box-shadow:none;background:transparent;">
+                <i class="bi bi-person-circle" style="color:#1976ff;"></i>
+                <!-- Custom arrow to match your screenshot -->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-left:4px;" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 10L12 14L16 10" stroke="#1976ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                <li class="px-3 py-2">
+                    <div style="font-weight:600;">{{ Auth::user()->name }}</div>
+                    <div style="font-size:0.95rem;color:#6c757d;">{{ Auth::user()->email }}</div>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}" class="logout-form m-0">
+                        @csrf
+                        <button class="dropdown-item text-danger" type="submit">
+                            <i class="bi bi-box-arrow-right"></i> Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
         </div>
-        <form method="POST" action="{{ route('logout') }}" class="logout-form">
+     
+        <form method="POST" action="{{ route('logout') }}" class="logout-form ms-2 d-none d-md-block">
             @csrf
             <button class="btn btn-outline-danger btn-sm" type="submit">
                 <i class="bi bi-box-arrow-right"></i> Logout
@@ -176,8 +200,8 @@
     <div class="row g-4 mb-4">
         <div class="col-md-4">
             <div class="manager-card">
-                <div class="manager-metric-label mb-1">Total Revenue <i class="bi bi-currency-dollar"></i></div>
-                <div class="manager-metric">$124,563</div>
+                <div class="manager-metric-label mb-1">Total Revenue <span style="font-weight:bold;">Rp</span></div>
+                <div class="manager-metric">Rp.1.240,563</div>
                 <div class="manager-metric-change">+12.5% from last month</div>
             </div>
         </div>
@@ -191,7 +215,7 @@
         <div class="col-md-4">
             <div class="manager-card">
                 <div class="manager-metric-label mb-1">Avg. Order Value <i class="bi bi-clipboard-data"></i></div>
-                <div class="manager-metric">$85.20</div>
+                <div class="manager-metric">Rp.8.500.200</div>
                 <div class="manager-metric-change">+3.1% from last month</div>
             </div>
         </div>
@@ -247,4 +271,5 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 @endsection

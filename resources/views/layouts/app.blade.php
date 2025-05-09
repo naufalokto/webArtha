@@ -92,7 +92,7 @@
             margin-right: 15px;
             font-size: 1.2rem;
         }
-    </style>
+        </style>
     @yield('styles')
 </head>
 <body>
@@ -103,53 +103,49 @@
     </main>
     
     @include('components.footer')
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-light pt-5 pb-3 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h5 class="fw-bold">Artha Makmur jaya</h5>
+                    <p>Memberikan Solusi digital dan melayani dengan professional.</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6 class="fw-bold">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">About Us</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Services</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6 class="fw-bold">Contact</h6>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> info@company.com</li>
+                        <li><i class="fas fa-phone me-2"></i> +1 234 567 890</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Business St, Surabaya</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h6 class="fw-bold">Follow Us</h6>
+                    <div>
+                        <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="text-center">
+                <small>&copy; 2025 Artha Makmur Jaya. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @yield('scripts')
-</body>
-</html>
-
-
-
-<!-- Footer Section -->
-<footer class="bg-dark text-light pt-5 pb-3 mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 mb-4">
-                <h5 class="fw-bold">Artha Makmur jaya</h5>
-                <p>Memberikan Solusi digital dan melayani dengan professional.</p>
-            </div>
-            <div class="col-md-3 mb-4">
-                <h6 class="fw-bold">Quick Links</h6>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-light text-decoration-none">About Us</a></li>
-                    <li><a href="#" class="text-light text-decoration-none">Services</a></li>
-                    <li><a href="#" class="text-light text-decoration-none">Contact</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 mb-4">
-                <h6 class="fw-bold">Contact</h6>
-                <ul class="list-unstyled">
-                    <li><i class="fas fa-envelope me-2"></i> info@company.com</li>
-                    <li><i class="fas fa-phone me-2"></i> +1 234 567 890</li>
-                    <li><i class="fas fa-map-marker-alt me-2"></i> 123 Business St, Surabaya</li>
-                </ul>
-            </div>
-            <div class="col-md-3 mb-4">
-                <h6 class="fw-bold">Follow Us</h6>
-                <div>
-                    <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-light me-3"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        <hr class="border-secondary">
-        <div class="text-center">
-            <small>&copy; 2025 Artha Makmur Jaya. All rights reserved.</small>
-        </div>
-    </div>
-</footer>
 </body>
 </html>

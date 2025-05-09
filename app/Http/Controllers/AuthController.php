@@ -28,16 +28,38 @@ class AuthController extends Controller
             if ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard');
             }
-            if ($user->role === 'manager') {
-                return redirect()->route('manager.dashboard');
-            }
             if ($user->role === 'sales') {
-                return redirect()->route('sales.dashboard');
+                return redirect()->route('admin.sales.dashboard');
             }
-            return redirect()->route('home');
+            if ($user->role === 'manager') {
+                return redirect()->route('admin.manager.dashboard');
+            }
+            // Default: customer or other roles
+            return redirect()->route('welcome');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials']);
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = \App\Models\User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => Hash::make($request->password),
+            'role'     => 'customer', // Set role to customer on registration
+        ]);
+
+        Auth::login($user);
+
+        // Redirect all users to welcome page after registration
+        return redirect()->route('welcome');
     }
 
     public function logout(Request $request)

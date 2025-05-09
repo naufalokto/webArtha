@@ -560,58 +560,58 @@
 </div>
 
             
-            <div class="tab-content" id="register-tab">
-                <form method="POST" action="{{ url('/register') }}">
-                    @csrf
-                    <div class="form-group input-icon">
-                        <i class="fas fa-user"></i>
-                        <input type="text" class="form-control @error('full_name') is-invalid @enderror" name="full_name" value="{{ old('full_name') }}" placeholder="Enter your full name" required>
-                        @error('full_name')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    
-                    <div class="form-group input-icon">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Enter your email" required>
-                        @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    
-                    <div class="form-group input-icon">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="reg-password" placeholder="Create a password" required>
-                        <span class="password-toggle" onclick="togglePassword('reg-password')">
-                            <i class="fas fa-eye"></i>
-                        </span>
-                        @error('password')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    
-                    <div class="form-group input-icon">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" class="form-control" name="password_confirmation" id="confirm-password" placeholder="Confirm your password" required>
-                        <span class="password-toggle" onclick="togglePassword('confirm-password')">
-                            <i class="fas fa-eye"></i>
-                        </span>
-                    </div>
-                    
-                    <button type="submit" class="auth-btn">Sign Up</button>
-                </form>
-                
-                <div class="auth-divider">Or continue with</div>
-                
-                <div class="social-buttons">
-                    <button type="button" class="social-btn">
-                        <i class="fab fa-google"></i> Google
-                    </button>
-                    <button type="button" class="social-btn">
-                        <i class="fab fa-github"></i> GitHub
-                    </button>
-                </div>
-            </div>
+<div class="tab-content" id="register-tab">
+    <form method="POST" action="{{ route('register.submit') }}">
+        @csrf
+        <div class="form-group input-icon">
+            <i class="fas fa-user"></i>
+            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Enter your full name" required>
+            @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        
+        <div class="form-group input-icon">
+            <i class="fas fa-envelope"></i>
+            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Enter your email" required>
+            @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        
+        <div class="form-group input-icon">
+            <i class="fas fa-lock"></i>
+            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="reg-password" placeholder="Create a password" required>
+            <span class="password-toggle" onclick="togglePassword('reg-password')">
+                <i class="fas fa-eye"></i>
+            </span>
+            @error('password')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        
+        <div class="form-group input-icon">
+            <i class="fas fa-lock"></i>
+            <input type="password" class="form-control" name="password_confirmation" id="confirm-password" placeholder="Confirm your password" required>
+            <span class="password-toggle" onclick="togglePassword('confirm-password')">
+                <i class="fas fa-eye"></i>
+            </span>
+        </div>
+        
+        <button type="submit" class="auth-btn">Sign Up</button>
+    </form>
+    
+    <div class="auth-divider">Or continue with</div>
+    
+    <div class="social-buttons">
+        <button type="button" class="social-btn">
+            <i class="fab fa-google"></i> Google
+        </button>
+        <button type="button" class="social-btn">
+            <i class="fab fa-github"></i> GitHub
+        </button>
+    </div>
+</div>
         </div>
     </div>
 </div>

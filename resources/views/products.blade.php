@@ -49,170 +49,43 @@
             </div>
         </div>
     </div>
-    <div class="row g-4" id="product-list">
-        <!-- Thinner Series -->
-        <div class="col-md-3 product-card" data-category="thinner">
-            <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
-                <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
-                    <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
+<div class="row g-4" id="product-list">
+    @foreach($products as $category => $items)
+        <div class="col-12 mb-4">
+            <h4 class="fw-bold mb-3">{{ $category }}</h4>
+            <div class="row">
+                @foreach($items as $product)
+                <div class="col-md-3 product-card" data-category="{{ $product->category }}">
+                    <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
+                            <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 class="fw-bold">{{ $product->name }}</h6>
+                            <div class="text-muted small mb-2">{{ $product->description }}</div>
+                            <div class="fw-bold mb-2">Rp.{{ number_format($product->price,0,',','.') }}</div>
+                            <div class="text-success mb-2">Stock: {{ $product->stock }}</div>
+                        </div>
+                        @auth
+                        <form action="{{ route('cart.add') }}" method="POST" class="d-flex align-items-center gap-2 mt-auto">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="number" name="quantity" value="1" min="1" max="{{ $product->stock }}" class="form-control" style="width:70px;" {{ $product->stock < 1 ? 'disabled' : '' }}>
+                            <button class="btn btn-dark w-100" {{ $product->stock < 1 ? 'disabled' : '' }}>Add to Cart</button>
+                        </form>
+                        @else
+                        <div class="alert alert-info mt-2">Login to add to cart</div>
+                        @endauth
+                    </div>
                 </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold">Thinner PVC</h6>
-                    <div class="text-muted small mb-2">Industrial grade solvent</div>
-                    <div class="fw-bold mb-2">Rp.1.900.000</div>
-                </div>
-                <button class="btn btn-dark w-100 mt-auto">Add to Cart</button>
+                @endforeach
             </div>
         </div>
-        <div class="col-md-3 product-card" data-category="thinner">
-            <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
-                <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
-                    <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold">Thinner Washing</h6>
-                    <div class="text-muted small mb-2">Effective cleaning thinner</div>
-                    <div class="fw-bold mb-2">Rp.1.700.000</div>
-                </div>
-                <button class="btn btn-dark w-100 mt-auto">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3 product-card" data-category="thinner">
-            <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
-                <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
-                    <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold">Thinner HG</h6>
-                    <div class="text-muted small mb-2">High grade thinner</div>
-                    <div class="fw-bold mb-2">Rp.2.100.000</div>
-                </div>
-                <button class="btn btn-dark w-100 mt-auto">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3 product-card" data-category="thinner">
-            <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
-                <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
-                    <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold">Thinner Melamin</h6>
-                    <div class="text-muted small mb-2">Melamine compatible thinner</div>
-                    <div class="fw-bold mb-2">----</div>
-                </div>
-                <button class="btn btn-dark w-100 mt-auto">Add to Cart</button>
-            </div>
-        </div>
-        <!-- Premium Thinners -->
-        <div class="col-md-3 product-card" data-category="premium">
-            <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
-                <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
-                    <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold">Thinner NC DUCO</h6>
-                    <div class="text-muted small mb-2">Premium quality for professional results</div>
-                    <div class="fw-bold mb-2">-----</div>
-                </div>
-                <button class="btn btn-dark w-100 mt-auto">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3 product-card" data-category="premium">
-            <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
-                <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
-                    <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold">Thinner NC Top Coat</h6>
-                    <div class="text-muted small mb-2">Top coat thinner</div>
-                    <div class="fw-bold mb-2">-----</div>
-                </div>
-                <button class="btn btn-dark w-100 mt-auto">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3 product-card" data-category="premium">
-            <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
-                <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
-                    <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold">Thinner Top Cut</h6>
-                    <div class="text-muted small mb-2">Superior finish quality</div>
-                    <div class="fw-bold mb-2">-----</div>
-                </div>
-                <button class="btn btn-dark w-100 mt-auto">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3 product-card" data-category="premium">
-            <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
-                <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
-                    <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold">Thinner Glaze</h6>
-                    <div class="text-muted small mb-2">Glaze thinner</div>
-                    <div class="fw-bold mb-2">----</div>
-                </div>
-                <button class="btn btn-dark w-100 mt-auto">Add to Cart</button>
-            </div>
-        </div>
-        <!-- Solvents -->
-        <div class="col-md-3 product-card" data-category="solvent">
-            <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
-                <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
-                    <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold">SOLVENT 442</h6>
-                    <div class="text-muted small mb-2">High-performance solution</div>
-                    <div class="fw-bold mb-2">-----</div>
-                </div>
-                <button class="btn btn-dark w-100 mt-auto">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3 product-card" data-category="solvent">
-            <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
-                <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
-                    <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold">SOLVENT 631</h6>
-                    <div class="text-muted small mb-2">High-quality solvent</div>
-                    <div class="fw-bold mb-2">-----</div>
-                </div>
-                <button class="btn btn-dark w-100 mt-auto">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3 product-card" data-category="solvent">
-            <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
-                <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
-                    <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold">SOLVENT 532</h6>
-                    <div class="text-muted small mb-2">Reliable solvent</div>
-                    <div class="fw-bold mb-2">-----</div>
-                </div>
-                <button class="btn btn-dark w-100 mt-auto">Add to Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3 product-card" data-category="solvent">
-            <div class="product-3d bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
-                <div class="d-flex justify-content-center align-items-center mb-3" style="height:140px;">
-                    <i class="bi bi-beaker" style="font-size:3rem; color:#6c757d;"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold">SOLVENT 811</h6>
-                    <div class="text-muted small mb-2">Specialty solvent</div>
-                    <div class="fw-bold mb-2">-----</div>
-                </div>
-                <button class="btn btn-dark w-100 mt-auto">Add to Cart</button>
-            </div>
-        </div>
-    </div>
+    @endforeach
+</div>
     <div class="row mt-4">
         <div class="col text-center">
-            <button class="btn btn-outline-secondary" id="show-all">Show All</button>
+            <a href="{{ route('cart.index') }}" class="btn btn-outline-secondary" id="show-all">View Cart</a>
         </div>
     </div>
 </div>
